@@ -18,15 +18,29 @@ def create_directory_structure(package_name, author, email, target_dir):
     root.mkdir(parents=True, exist_ok=True)
 
     package_dir = root / package_name
-    package_dir.mkdir()
+    package_dir.mkdir(exist_ok=True)
     setup_py = root / 'setup.py'
 
     modules = ['constants.py', 'display.py', 'download.py', 'file_utilities.py',
                'image_conversion.py', 'image_processing.py', '__init__.py',
                'input_validation.py', package_name+'.py', 'resources.py']
+    
+    module_descriptions = {
+        'constants.py': 'This module holds all the constant values.',
+        'display.py': 'This module is responsible for displaying information.',
+        'download.py': 'This module handles downloading of files.',
+        'file_utilities.py': 'This module provides utilities for file operations.',
+        'image_conversion.py': 'This module performs image conversions.',
+        'image_processing.py': 'This module handles image processing tasks.',
+        '__init__.py': 'Initialization module for the package.',
+        'input_validation.py': 'This module validates user input.',
+        f'{package_name}.py': f'This is the main module for {package_name}.',
+        'resources.py': 'This module manages resources.'
+    }
 
     for module in modules:
         module_path = package_dir / module
+        description = module_descriptions.get(module, 'No description available.')
         with open(module_path, 'w') as f:
             preamble = f"""#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -34,7 +48,7 @@ def create_directory_structure(package_name, author, email, target_dir):
 '''
 .. module:: {module[:-3]}
    :platform: Unix, Windows
-   :synopsis: A module for {package_name}.
+   :synopsis: As a part of {package_name}. {description}
 
 .. moduleauthor:: {author} <{email}>
 
