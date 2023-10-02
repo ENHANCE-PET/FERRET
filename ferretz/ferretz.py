@@ -9,6 +9,7 @@ RESET = '\033[0m'
 
 
 def greet_user():
+    print('')
     intro = "🦡 Hi, I'm Ferret, your fabulously sassy package creator. 🎩✨"
     joke = "I'm here to declutter your code life—because research is messy but your code doesn’t have to be!"
     greeting = choice([
@@ -17,7 +18,7 @@ def greet_user():
         "Shall we dive in, Darling?",
     ])
     print(f"{intro}\n{joke}\n{greeting}")
-
+    print('')
 
 
 
