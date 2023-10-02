@@ -121,6 +121,7 @@ def create_new_package():
             print(f"{RED}🦡 Oops! That hole doesn't exist... I mean, directory! Try again. 🚫{RESET} ")
 
     summary = create_directory_structure(package_name, author, email, target_dir)
+    print('')
     post_generation_summary(summary)
 
 
