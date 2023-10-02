@@ -3,7 +3,9 @@
 </p>
 
 # Ferret 🦡 
-[![PyPI version](https://img.shields.io/pypi/v/ferretz?color=FF1493&style=flat-square&logo=pypi)](https://pypi.org/project/ferretz/) [![Monthly Downloads](https://img.shields.io/pypi/dm/ferretz?label=Downloads%20(Monthly)&color=9400D3&style=flat-square&logo=python)](https://pypi.org/project/ferretz/) [![Daily Downloads](https://img.shields.io/pypi/dd/ferretz?label=Downloads%20(Daily)&color=9400D3&style=flat-square&logo=python)](https://pypi.org/project/ferretz/)
+[![PyPI version](https://img.shields.io/pypi/v/ferretz?color=FF1493&style=flat-square&logo=pypi)](https://pypi.org/project/ferretz/) [![Monthly Downloads](https://img.shields.io/pypi/dm/ferretz?label=Downloads%20(Monthly)&color=FF69B4&style=flat-square&logo=python)](https://pypi.org/project/ferretz/) 
+[![Daily Downloads](https://img.shields.io/pypi/dd/ferretz?label=Downloads%20(Daily)&color=FF69B4&style=flat-square&logo=python)](https://pypi.org/project/ferretz/)
+
 
 **_Framework for Enhance: Organized Workflow Library_**
 Ferret is a Python tool designed specifically to create 'enhance.pet' compliant Python packages. This tool offers a user-friendly way to generate a package structure that follows the guidelines and best practices of the enhance.pet framework.
