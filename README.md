@@ -1,4 +1,6 @@
-![Ferret-logo.png](./Images/Ferret-logo.png)
+<p align="center">
+<img src="https://github.com/LalithShiyam/FALCON/blob/main/Images/Ferret-logo.png">
+</p>
 
 # Ferretz 🦡 : Framework for Enhance-Organized Workflow Library
 
