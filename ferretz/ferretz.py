@@ -109,4 +109,25 @@ def create_new_package():
     email = input(f"{BLUE}🦡 Got an email, smarty-pants? 📧{RESET}")
 
     while True:
-        target_dir
+        target_dir = input(f"{BLUE}🦡 Where should I dig the new hole... um, I mean, where should the package be created? (Provide the full path) 🗂{RESET}")
+        if Path(target_dir).exists():
+            break
+        else:
+            print(f"{RED}🦡 Oops! That hole doesn't exist... I mean, directory! Try again. 🚫{RESET}")
+
+    summary = create_directory_structure(package_name, author, email, target_dir)
+    post_generation_summary(summary)
+
+
+def main():
+    greet_user()
+    action = input(f"{BLUE}🦡 What's on the agenda today, boss? ('new' to create a new package) 🎬{RESET}")
+
+    if action.lower() == 'new':
+        create_new_package()
+    else:
+        print(f"{RED}🦡 Aww, shucks! I don't know that command. 🚫{RESET}")
+
+if __name__ == "__main__":
+    main()
+
