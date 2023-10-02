@@ -90,15 +90,15 @@ def post_generation_summary(summary):
     print(f"{BLUE}🦡 Here's a sneak peek at what I've dug up for you: 🐾{RESET} ")
     for item in summary:
         print(f"  - {item}")
-    print("Next steps:")
-    print("  1️⃣ Review the generated files.")
-    print("  2️⃣ Populate the modules with your code.")
-    print("  3️⃣ Install dependencies if necessary.")
-    print("  4️⃣ Test your package.")
-    print("  5️⃣ Create a README.md and other documentation.")
-    print("  6️⃣ Run 'python setup.py sdist bdist_wheel' to package your project.")
-    print("  7️⃣ Install twine if you haven't: 'pip install twine'")
-    print("  8️⃣ Run 'twine upload dist/*' to upload your package to PyPI.")
+    print(f"{BLUE}Next steps:{RESET} ")
+    print("  1️⃣  Review the generated files.")
+    print("  2️⃣  Populate the modules with your code.")
+    print("  3️⃣  Install dependencies if necessary.")
+    print("  4️⃣  Test your package.")
+    print("  5️⃣  Create a README.md and other documentation.")
+    print("  6️⃣  Run 'python setup.py sdist bdist_wheel' to package your project.")
+    print("  7️⃣  Install twine if you haven't: 'pip install twine'")
+    print("  8️⃣  Run 'twine upload dist/*' to upload your package to PyPI.")
 
 
 def create_new_package():
