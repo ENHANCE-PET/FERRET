@@ -4,17 +4,21 @@ from random import choice
 # ANSI Escape Codes for color output
 RED = '\033[91m'
 GREEN = '\033[92m'
-BLUE = '\033[94m'
+BLUE = '\033[95m'
 RESET = '\033[0m'
 
 
 def greet_user():
-    greetings = [
-        f"{GREEN}🦡 Hey there, hooman! Ready to code?{RESET}",
-        f"{GREEN}🦡 What's cookin', good lookin'?{RESET}",
-        f"{GREEN}🦡 Look who's back for more coding fun!{RESET}"
-    ]
-    print(choice(greetings))
+    intro = "🦡 Hi, I'm Ferret, your fabulously sassy package creator. 🎩✨"
+    joke = "I'm here to declutter your code life—because research is messy but your code doesn’t have to be!"
+    greeting = choice([
+        "So, shall we code or what?",
+        "Ready to make some structured magic?",
+        "Shall we dive in, Darling?",
+    ])
+    print(f"{intro}\n{joke}\n{greeting}")
+
+
 
 
 def create_directory_structure(package_name, author, email, target_dir):
@@ -78,12 +82,12 @@ setup(
         f.write(content)
         summary.append(f"Created: {setup_py}")
 
-    print(f"{GREEN}🦡 Your new den... er, package, is ready to rumble! 🎉{RESET}")
+    print(f"{GREEN}🦡 Your new den... er, package, is ready to rumble! 🎉{RESET} ")
     return summary
 
 
 def post_generation_summary(summary):
-    print(f"{BLUE}🦡 Here's a sneak peek at what I've dug up for you: 🐾{RESET}")
+    print(f"{BLUE}🦡 Here's a sneak peek at what I've dug up for you: 🐾{RESET} ")
     for item in summary:
         print(f"  - {item}")
     print("Next steps:")
@@ -99,21 +103,21 @@ def post_generation_summary(summary):
 
 def create_new_package():
     while True:
-        package_name = input(f"{BLUE}🦡 What's the name of the new package? (Must end with 'z') 📦{RESET}")
+        package_name = input(f"{BLUE}🦡 What's the name of the new package? (Must end with 'z') 📦{RESET} ")
         if package_name.endswith('z'):
             break
         else:
-            print(f"{RED}🦡 Oopsie! Your package name should end with a 'z'. Retry! 🚫{RESET}")
+            print(f"{RED}🦡 Oopsie! Your package name should end with a 'z'. Retry! 🚫{RESET} ")
 
-    author = input(f"{BLUE}🦡 Who's the genius behind this package? (Author's name) 👩‍💻{RESET}")
-    email = input(f"{BLUE}🦡 Got an email, smarty-pants? 📧{RESET}")
+    author = input(f"{BLUE}🦡 Who's the genius behind this package? (Author's name) 👩‍💻{RESET} ")
+    email = input(f"{BLUE}🦡 Got an email, smarty-pants? 📧{RESET} ")
 
     while True:
-        target_dir = input(f"{BLUE}🦡 Where should I dig the new hole... um, I mean, where should the package be created? (Provide the full path) 🗂{RESET}")
+        target_dir = input(f"{BLUE}🦡 Where should I dig the new hole... um, I mean, where should the package be created? (Provide the full path) 🗂{RESET} ")
         if Path(target_dir).exists():
             break
         else:
-            print(f"{RED}🦡 Oops! That hole doesn't exist... I mean, directory! Try again. 🚫{RESET}")
+            print(f"{RED}🦡 Oops! That hole doesn't exist... I mean, directory! Try again. 🚫{RESET} ")
 
     summary = create_directory_structure(package_name, author, email, target_dir)
     post_generation_summary(summary)
@@ -121,12 +125,12 @@ def create_new_package():
 
 def main():
     greet_user()
-    action = input(f"{BLUE}🦡 What's on the agenda today, boss? ('new' to create a new package) 🎬{RESET}")
+    action = input(f"{BLUE}🦡 What's on the agenda today, boss? ('new' to create a new package) 🎬{RESET} ")
 
     if action.lower() == 'new':
         create_new_package()
     else:
-        print(f"{RED}🦡 Aww, shucks! I don't know that command. 🚫{RESET}")
+        print(f"{RED}🦡 Aww, shucks! I don't know that command. 🚫{RESET} ")
 
 if __name__ == "__main__":
     main()
