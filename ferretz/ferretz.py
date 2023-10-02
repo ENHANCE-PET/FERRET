@@ -1,17 +1,10 @@
-# ferretz.py
 from pathlib import Path
 from random import choice
 import os
 
-
 def greet_user():
-    greetings = [
-        "🦡 Hey there, hooman! Ready to code?",
-        "🦡 What's cookin', good lookin'?",
-        "🦡 Look who's back for more coding fun!"
-    ]
+    greetings = ["🦡 Hey there, hooman! Ready to code?", "🦡 What's cookin', good lookin'?", "🦡 Look who's back for more coding fun!"]
     print(choice(greetings))
-
 
 def create_directory_structure(package_name, author, email, target_dir):
     root = Path(target_dir) / package_name
@@ -25,22 +18,10 @@ def create_directory_structure(package_name, author, email, target_dir):
                'image_conversion.py', 'image_processing.py', '__init__.py',
                'input_validation.py', package_name+'.py', 'resources.py']
     
-    module_descriptions = {
-        'constants.py': 'This module holds all the constant values.',
-        'display.py': 'This module is responsible for displaying information.',
-        'download.py': 'This module handles downloading of files.',
-        'file_utilities.py': 'This module provides utilities for file operations.',
-        'image_conversion.py': 'This module performs image conversions.',
-        'image_processing.py': 'This module handles image processing tasks.',
-        '__init__.py': 'Initialization module for the package.',
-        'input_validation.py': 'This module validates user input.',
-        f'{package_name}.py': f'This is the main module for {package_name}.',
-        'resources.py': 'This module manages resources.'
-    }
+    summary = []
 
     for module in modules:
         module_path = package_dir / module
-        description = module_descriptions.get(module, 'No description available.')
         with open(module_path, 'w') as f:
             preamble = f"""#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -48,7 +29,7 @@ def create_directory_structure(package_name, author, email, target_dir):
 '''
 .. module:: {module[:-3]}
    :platform: Unix, Windows
-   :synopsis: {module[:-3]}.py module is a part of the {package_name} package. {description}
+   :synopsis: A module for {package_name}.
 
 .. moduleauthor:: {author} <{email}>
 
@@ -58,6 +39,7 @@ This module is part of the {package_name} package.
 # Your code here
 """
             f.write(preamble)
+        summary.append(f"Created: {module_path}")
 
     with open(setup_py, 'w') as f:
         content = f"""from setuptools import setup, find_packages
@@ -81,7 +63,24 @@ setup(
 )
 """
         f.write(content)
+    summary.append(f"Created: {setup_py}")
 
+    return summary
+
+def post_generation_summary(summary):
+    print("🦡 Yay! Your new package has been successfully created!")
+    print("Here's what was generated:")
+    for item in summary:
+        print(f"  - {item}")
+    print("Next steps:")
+    print("  1. Review the generated files.")
+    print("  2. Populate the modules with your code.")
+    print("  3. Install dependencies if necessary.")
+    print("  4. Test your package.")
+    print("  5. Create a README.md and other documentation.")
+    print("  6. Run 'python setup.py sdist bdist_wheel' to package your project.")
+    print("  7. Install twine if you haven't: 'pip install twine'")
+    print("  8. Run 'twine upload dist/*' to upload your package to PyPI.")
 
 def create_new_package():
     while True:
@@ -101,9 +100,8 @@ def create_new_package():
         else:
             print("🦡 Oops! That directory doesn't exist. Try again.")
 
-    create_directory_structure(package_name, author, email, target_dir)
-    print("🦡 Yay! Your new package '{}' has been successfully created!".format(package_name))
-
+    summary = create_directory_structure(package_name, author, email, target_dir)
+    post_generation_summary(summary)
 
 def main():
     greet_user()
@@ -111,7 +109,6 @@ def main():
 
     if action == 'new':
         create_new_package()
-
 
 if __name__ == "__main__":
     main()
