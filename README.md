@@ -2,7 +2,8 @@
 <img src="https://github.com/LalithShiyam/FERRET/blob/main/Images/Ferret-logo.png">
 </p>
 
-# Ferretz 🦡 : Framework for Enhance-Organized Workflow Library
+# Ferretz 🦡 
+**_Framework for Enhance: Organized Workflow Library_**
 
 Ferretz is a Python tool designed specifically to create 'enhance.pet' compliant Python packages. This tool offers a user-friendly way to generate a package structure that follows the guidelines and best practices of the enhance.pet framework.
 
