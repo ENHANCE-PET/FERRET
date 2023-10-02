@@ -48,7 +48,7 @@ your_package_namez/
 
 ## Contributing 🤝
 
-Contributions, issues, and feature requests are welcome! For more information, see our [contributing guide](./CONTRIBUTING.md).
+Contributions, issues, and feature requests are welcome!
 
 ## License 📄
 
