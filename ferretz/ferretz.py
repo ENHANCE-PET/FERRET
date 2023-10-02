@@ -1,23 +1,37 @@
 from pathlib import Path
 from random import choice
-import os
+
+# ANSI Escape Codes for color output
+RED = '\033[91m'
+GREEN = '\033[92m'
+BLUE = '\033[94m'
+RESET = '\033[0m'
+
 
 def greet_user():
-    greetings = ["🦡 Hey there, hooman! Ready to code?", "🦡 What's cookin', good lookin'?", "🦡 Look who's back for more coding fun!"]
+    greetings = [
+        f"{GREEN}🦡 Hey there, hooman! Ready to code?{RESET}",
+        f"{GREEN}🦡 What's cookin', good lookin'?{RESET}",
+        f"{GREEN}🦡 Look who's back for more coding fun!{RESET}"
+    ]
     print(choice(greetings))
 
+
 def create_directory_structure(package_name, author, email, target_dir):
+    print(f"{BLUE}🦡 Creating your lair... Ahem, I mean your package directory! 📦{RESET}")
+
     root = Path(target_dir) / package_name
     root.mkdir(parents=True, exist_ok=True)
-
     package_dir = root / package_name
     package_dir.mkdir(exist_ok=True)
     setup_py = root / 'setup.py'
 
-    modules = ['constants.py', 'display.py', 'download.py', 'file_utilities.py',
-               'image_conversion.py', 'image_processing.py', '__init__.py',
-               'input_validation.py', package_name+'.py', 'resources.py']
-    
+    modules = [
+        'constants.py', 'display.py', 'download.py', 'file_utilities.py',
+        'image_conversion.py', 'image_processing.py', '__init__.py',
+        'input_validation.py', f"{package_name}.py", 'resources.py'
+    ]
+
     summary = []
 
     for module in modules:
@@ -56,59 +70,43 @@ setup(
     long_description_content_type='text/markdown',
     install_requires=[],  # List your package's dependencies here
     classifiers=[
-        # Choose your audience and license, etc.
         'Programming Language :: Python :: 3',
     ],
     python_requires='>=3.10',
 )
 """
         f.write(content)
-    summary.append(f"Created: {setup_py}")
+        summary.append(f"Created: {setup_py}")
 
+    print(f"{GREEN}🦡 Your new den... er, package, is ready to rumble! 🎉{RESET}")
     return summary
 
+
 def post_generation_summary(summary):
-    print("🦡 Yay! Your new package has been successfully created!")
-    print("Here's what was generated:")
+    print(f"{BLUE}🦡 Here's a sneak peek at what I've dug up for you: 🐾{RESET}")
     for item in summary:
         print(f"  - {item}")
     print("Next steps:")
-    print("  1. Review the generated files.")
-    print("  2. Populate the modules with your code.")
-    print("  3. Install dependencies if necessary.")
-    print("  4. Test your package.")
-    print("  5. Create a README.md and other documentation.")
-    print("  6. Run 'python setup.py sdist bdist_wheel' to package your project.")
-    print("  7. Install twine if you haven't: 'pip install twine'")
-    print("  8. Run 'twine upload dist/*' to upload your package to PyPI.")
+    print("  1️⃣ Review the generated files.")
+    print("  2️⃣ Populate the modules with your code.")
+    print("  3️⃣ Install dependencies if necessary.")
+    print("  4️⃣ Test your package.")
+    print("  5️⃣ Create a README.md and other documentation.")
+    print("  6️⃣ Run 'python setup.py sdist bdist_wheel' to package your project.")
+    print("  7️⃣ Install twine if you haven't: 'pip install twine'")
+    print("  8️⃣ Run 'twine upload dist/*' to upload your package to PyPI.")
+
 
 def create_new_package():
     while True:
-        package_name = input("📦 What's the name of the new package? (Remember to end it with 'z') ")
+        package_name = input(f"{BLUE}🦡 What's the name of the new package? (Must end with 'z') 📦{RESET}")
         if package_name.endswith('z'):
             break
         else:
-            print("🦡 Oops! The package name should end with a 'z'. Try again.")
+            print(f"{RED}🦡 Oopsie! Your package name should end with a 'z'. Retry! 🚫{RESET}")
 
-    author = input("👩‍💻 Who's the author? ")
-    email = input("📧 Author's email? ")
+    author = input(f"{BLUE}🦡 Who's the genius behind this package? (Author's name) 👩‍💻{RESET}")
+    email = input(f"{BLUE}🦡 Got an email, smarty-pants? 📧{RESET}")
 
     while True:
-        target_dir = input("🗂 Where would you like to create the new package? (Provide the full path) ")
-        if Path(target_dir).exists():
-            break
-        else:
-            print("🦡 Oops! That directory doesn't exist. Try again.")
-
-    summary = create_directory_structure(package_name, author, email, target_dir)
-    post_generation_summary(summary)
-
-def main():
-    greet_user()
-    action = input("What would you like to do today? (type 'new' to create a new package) 🎬 ")
-
-    if action == 'new':
-        create_new_package()
-
-if __name__ == "__main__":
-    main()
+        target_dir
