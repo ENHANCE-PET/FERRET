@@ -91,6 +91,7 @@ def post_generation_summary(summary):
     print(f"{BLUE}🦡 Here's a sneak peek at what I've dug up for you: 🐾{RESET} ")
     for item in summary:
         print(f"  - {item}")
+    print('')
     print(f"{BLUE}Next steps:{RESET} ")
     print("  1️⃣  Review the generated files.")
     print("  2️⃣  Populate the modules with your code.")
