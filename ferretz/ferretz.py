@@ -48,7 +48,7 @@ def create_directory_structure(package_name, author, email, target_dir):
 '''
 .. module:: {module[:-3]}
    :platform: Unix, Windows
-   :synopsis: {module[:-3]} is a part of {package_name} package. {description}
+   :synopsis: {module[:-3]}.py module is a part of the {package_name} package. {description}
 
 .. moduleauthor:: {author} <{email}>
 
