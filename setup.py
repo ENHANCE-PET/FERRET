@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 setup(
     name='ferretz',
-    version='0.2',
+    version='0.3',
     description='A Python package to create "enhance.pet" compliant package folder structures',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
