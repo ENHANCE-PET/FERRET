@@ -1,3 +1,5 @@
+import os
+import shutil
 from pathlib import Path
 from random import choice
 
@@ -6,6 +8,7 @@ RED = '\033[91m'
 GREEN = '\033[92m'
 BLUE = '\033[38;5;141m'
 RESET = '\033[0m'
+TEMPLATE_EXTENSION = ".tmpl"
 
 
 def greet_user():
@@ -19,7 +22,6 @@ def greet_user():
     ])
     print(f"{intro}\n{joke}\n{greeting}")
     print('')
-
 
 
 def create_directory_structure(package_name, author, email, target_dir):
@@ -36,7 +38,7 @@ def create_directory_structure(package_name, author, email, target_dir):
         'image_conversion.py', 'image_processing.py', '__init__.py',
         'input_validation.py', f"{package_name}.py", 'resources.py'
     ]
-    
+
     module_descriptions = {
         'constants.py': 'This module holds all the constant values.',
         'display.py': 'This module is responsible for displaying information.',
@@ -52,11 +54,23 @@ def create_directory_structure(package_name, author, email, target_dir):
 
     summary = []
 
+    ferretz_directory = os.path.dirname(os.path.abspath(__file__))
+    template_modules_directory = os.path.join(ferretz_directory, "template_modules")
+    existing_module_templates = [file for file in os.listdir(template_modules_directory) if file.endswith(TEMPLATE_EXTENSION)]
+    summary.append(f"Existing modules: {existing_module_templates} at {template_modules_directory}")
+
     for module in modules:
-        module_path = package_dir / module
-        description = module_descriptions.get(module, 'No description available.')
-        with open(module_path, 'w') as f:
-            preamble = f"""#!/usr/bin/env python3
+        module_path = os.path.join(package_dir, module)
+
+        # Checks if a template file exists
+        if f"{module}{TEMPLATE_EXTENSION}" in existing_module_templates:
+            shutil.copy(os.path.join(template_modules_directory, f"{module}{TEMPLATE_EXTENSION}"), module_path)
+            summary.append(f"Copied: {module_path} (from template repository)")
+        else:
+            description = module_descriptions.get(module, 'No description available.')
+            with open(module_path, 'w') as f:
+                preamble = f"""#!/usr/bin/env python3
+            
 # -*- coding: utf-8 -*-
 
 '''
@@ -70,8 +84,8 @@ def create_directory_structure(package_name, author, email, target_dir):
 
 # Your code here
 """
-            f.write(preamble)
-        summary.append(f"Created: {module_path}")
+                f.write(preamble)
+            summary.append(f"Created: {module_path}")
 
     with open(setup_py, 'w') as f:
         content = f"""from setuptools import setup, find_packages
@@ -141,13 +155,16 @@ def create_new_package():
 
 def main():
     greet_user()
-    action = input(f"{BLUE}🦡 What's on the agenda today, boss? ('new' to create a new package) 🎬{RESET} ")
+    action = input(f"{BLUE}🦡 What's on the agenda today, boss? ('new' to create a new package, 'exit' to ...exit.) 🎬{RESET} ")
 
     if action.lower() == 'new':
         create_new_package()
+    elif action.lower() == 'exit':
+        print(f"{BLUE}🦡 Goodbye! 👋{RESET} ")
+        return
     else:
         print(f"{RED}🦡 Aww, shucks! I don't know that command. 🚫{RESET} ")
 
+
 if __name__ == "__main__":
     main()
-
