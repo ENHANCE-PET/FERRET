@@ -8,6 +8,7 @@ RED = '\033[91m'
 GREEN = '\033[92m'
 BLUE = '\033[38;5;141m'
 RESET = '\033[0m'
+TEMPLATE_EXTENSION = ".tmpl"
 
 
 def greet_user():
@@ -55,13 +56,15 @@ def create_directory_structure(package_name, author, email, target_dir):
 
     ferretz_directory = os.path.dirname(os.path.abspath(__file__))
     template_modules_directory = os.path.join(ferretz_directory, "template_modules")
-    existing_module_templates = os.listdir(template_modules_directory)
+    existing_module_templates = [file for file in os.listdir(template_modules_directory) if file.endswith(TEMPLATE_EXTENSION)]
     summary.append(f"Existing modules: {existing_module_templates} at {template_modules_directory}")
 
     for module in modules:
         module_path = os.path.join(package_dir, module)
-        if module in existing_module_templates:
-            shutil.copy(os.path.join(template_modules_directory, module), module_path)
+
+        # Checks if a template file exists
+        if f"{module}{TEMPLATE_EXTENSION}" in existing_module_templates:
+            shutil.copy(os.path.join(template_modules_directory, f"{module}{TEMPLATE_EXTENSION}"), module_path)
             summary.append(f"Copied: {module_path} (from template repository)")
         else:
             description = module_descriptions.get(module, 'No description available.')

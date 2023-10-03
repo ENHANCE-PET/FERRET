@@ -1,6 +1,5 @@
 # setup.py for ferretz
 from setuptools import setup, find_packages
-
 setup(
     name='ferretz',
     version='0.2',
@@ -11,8 +10,9 @@ setup(
     author_email='lalith.shiyamsundar@meduniwien.ac.at',
     url='https://github.com/LalithShiyam/ferretz',  # Replace with your GitHub URL
     license='MIT',  # Replace with your license
-    packages=find_packages(exclude=['template_modules']),
-    package_data={'ferretz': ['template_modules/*.py']},
+    packages=find_packages(),
+    package_data={'ferretz': ['template_modules/*.py.tmpl']},
+    include_package_data=True,
     entry_points={
         'console_scripts': ['ferretz=ferretz.ferretz:main'],
     },
