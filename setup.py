@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='ferretz',
-    version='0.1',
+    version='0.2',
     description='A Python package to create "enhance.pet" compliant package folder structures',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
@@ -11,7 +11,8 @@ setup(
     author_email='lalith.shiyamsundar@meduniwien.ac.at',
     url='https://github.com/LalithShiyam/ferretz',  # Replace with your GitHub URL
     license='MIT',  # Replace with your license
-    packages=find_packages(),
+    packages=find_packages(exclude=['template_modules']),
+    package_data={'ferretz': ['template_modules/*.py']},
     entry_points={
         'console_scripts': ['ferretz=ferretz.ferretz:main'],
     },
